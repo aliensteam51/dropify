@@ -3,6 +3,13 @@ var path = require('path')
 var async = require('async')
 
 var __dropify = {
+    supportedExtensions : {
+        ".png" : "image/png",
+        ".jpg" : "image/jpeg",
+        ".wav" : "audio/wav",
+        ".mp3" : "audio/mpeg3"
+    },
+
     directoryList : function(dir, callback) {
         var self = this
         var directories = []
@@ -50,11 +57,12 @@ var __dropify = {
             if (err) {
                 callback(err)
             } else {
-                var base64String = new Buffer(data).toString('base64')
+                // var base64String = new Buffer(data).toString('base64')
+                var base64String = "aGVsbG8gd29ybGQh"
 
                 if (encodeAsDataURI) {
                     var extension = path.extname(file)
-                    var mimeType = self.extensionToMimeType(extension)
+                    var mimeType = self.supportedExtensions[extension]
 
                     if (mimeType) {
                         var dataURI = self.dataUriWithBase64StringAndMimeType(base64String, mimeType)
@@ -68,27 +76,6 @@ var __dropify = {
                 }
             }
         })
-    },
-
-    extensionToMimeType: function(extension) {
-        var mimeType;
-
-        switch (extension) {
-            case ".png":
-                mimeType = "image/png"
-                break
-            case ".jpg":
-                mimeType = "image/jpeg"
-                break
-            case ".wav":
-                mimeType = "audio/wav"
-                break
-            case ".mp3":
-                mimeType = "audio/mpeg3"
-                break
-        }
-
-        return mimeType
     },
 
     dataUriWithBase64StringAndMimeType: function(base64String, mimeType) {
@@ -207,12 +194,14 @@ var __dropify = {
                 callback(null, js)
             }
         })
-    },
-
-
+    }
 }
 
 module.exports = {
+    supportedExtensions : function() {
+        return __dropify.supportedExtensions
+    },
+
     dropify : function(assetsPath, htmlInputPath, htmlOutputPath, callback) {
         fs.readFile(htmlInputPath, 'utf-8', function(err, htmlData) {
             if (err) {
