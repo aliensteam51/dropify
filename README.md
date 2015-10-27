@@ -82,9 +82,9 @@ You can add other extensions before using Dropify:
 
 	dropify = require("gamedropify")
 
-	var src = "/Users/almerlucke/Desktop/dropifyTagTest.html"
-	var dst = "/Users/almerlucke/Desktop/dropifyTagTestOutput.html"
-	var root = "/Users/almerlucke/Desktop/assets"
+	var src = "dropifyTagTest.html"
+	var dst = "dropifyTagTestOutput.html"
+	var root = "assets"
 	
 	var supportedExtensions = dropify.supportedExtensions()
 	
