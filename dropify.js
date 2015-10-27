@@ -10,6 +10,12 @@ var __dropify = {
         ".mp3" : "audio/mpeg3"
     },
 
+    /**
+     * Get an object containing a list of files and a list of dictionaries in the given directory
+     * @param  {string}   dir      path to directory
+     * @param  {Function} callback function(err, object)
+     * @return {undefined}            no return value
+     */
     directoryList : function(dir, callback) {
         var self = this
         var directories = []
@@ -50,6 +56,13 @@ var __dropify = {
         })
     },
 
+    /**
+     * Make a base64 string from file content
+     * @param  {string}   file            path to the file
+     * @param  {boolean}   encodeAsDataURI if true, add a data URI header to the string
+     * @param  {Function} callback        function(err, base64 string)
+     * @return {undefined}                   no return value
+     */
     fileToBase64String : function(file, encodeAsDataURI, callback) {
         var self = this
 
@@ -77,10 +90,25 @@ var __dropify = {
         })
     },
 
+    /**
+     * Prepend a data URI header to a base64 string
+     * @param  {string} base64String a base64 encoded string
+     * @param  {string} mimeType     a mime type to use in data URI header
+     * @return {string}              data URI string
+     */
     dataUriWithBase64StringAndMimeType: function(base64String, mimeType) {
         return "data:" + mimeType + ";base64," + base64String
     },
 
+    /**
+     * Create a dictionary recursively from files and subfolders.
+     * The content of the files are encoded as base64 strings.
+     * Subfolders are added as other dictionary objects
+     * @param  {string}   dir             path to directory
+     * @param  {boolean}   encodeAsDataURI if true, add a data URI header to the strings
+     * @param  {Function} callback        function(err, dictionary)
+     * @return {undefined}                   no return value
+     */
     directoryToBase64Map : function(dir, encodeAsDataURI, callback) {
         var map = {}
         var self = this
@@ -111,6 +139,11 @@ var __dropify = {
         })
     },
 
+    /**
+     * Convert a dictionary to a Javascript string
+     * @param  {Object} dict the dictionary to convert
+     * @return {string}      the string representation of the dictionary
+     */
     dictionaryToJavascriptString : function(dict) {
         var str = "{"
         var first = true
@@ -139,6 +172,11 @@ var __dropify = {
         return str
     },
 
+    /**
+     * Scan a HTML file for Dropify tags
+     * @param  {string} source HTML as string
+     * @return {Object}        a dictionary with tags found
+     */
     getDropifyTagsForSource : function(source) {
         var regex = /(<!--Dropify:([a-zA-Z_$][0-9a-zA-Z_$]*#?)-->)/g
         var tags = {}
@@ -157,6 +195,12 @@ var __dropify = {
         return tags
     },
 
+    /**
+     * Get a dictionary of Dropify tags from a source HTML string and root path
+     * @param  {string} root   path to root asset directory
+     * @param  {string} source HTML string
+     * @return {Object}        dictionary with tags
+     */
     getDropifyTagsForRoot : function(root, source) {
         var tags = this.getDropifyTagsForSource(source)
 
@@ -170,6 +214,13 @@ var __dropify = {
         return tags
     },
 
+    /**
+     * Replace a Dropify tag with a script tag containing a base64 dictionary Object
+     * @param  {string} source            HTML source string
+     * @param  {string} tag               the tag to replace
+     * @param  {string} replacementString the replacement string
+     * @return {[type]}                   [description]
+     */
     replaceDropifyTagWithString : function(source, tag, replacementString) {
         var regex = new RegExp("<!--Dropify:" + tag + "-->")
 
@@ -178,6 +229,14 @@ var __dropify = {
         return source.replace(regex, replacementString)
     },
 
+    /**
+     * [function description]
+     * @param  {[type]}   dir             [description]
+     * @param  {[type]}   varName         [description]
+     * @param  {[type]}   encodeAsDataURI [description]
+     * @param  {Function} callback        [description]
+     * @return {[type]}                   [description]
+     */
     directoryToJavascriptTag : function(dir, varName, encodeAsDataURI, callback) {
         var self = this
 
