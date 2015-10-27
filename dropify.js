@@ -219,7 +219,7 @@ var __dropify = {
      * @param  {string} source            HTML source string
      * @param  {string} tag               the tag to replace
      * @param  {string} replacementString the replacement string
-     * @return {[type]}                   [description]
+     * @return {string}                   HTML with tags replaced
      */
     replaceDropifyTagWithString : function(source, tag, replacementString) {
         var regex = new RegExp("<!--Dropify:" + tag + "-->")
@@ -230,12 +230,12 @@ var __dropify = {
     },
 
     /**
-     * [function description]
-     * @param  {[type]}   dir             [description]
-     * @param  {[type]}   varName         [description]
-     * @param  {[type]}   encodeAsDataURI [description]
-     * @param  {Function} callback        [description]
-     * @return {[type]}                   [description]
+     * Turn a directory into a javascript script tag
+     * @param  {string}   dir             path to directory
+     * @param  {string}   varName         variable name for the variable in the script tag
+     * @param  {boolean}   encodeAsDataURI if true, add a data URI header to base64 strings
+     * @param  {Function} callback        function(err, script string)
+     * @return {undefined}                   no return value
      */
     directoryToJavascriptTag : function(dir, varName, encodeAsDataURI, callback) {
         var self = this
@@ -256,10 +256,23 @@ var __dropify = {
 }
 
 module.exports = {
+    /**
+     * Return an Object containing all supported extensions
+     * @return {Object} Supported extensions dictionary
+     */
     supportedExtensions : function() {
         return __dropify.supportedExtensions
     },
 
+    /**
+     * The main operation, replace Dropify tags in HTML with javascript script tags containing
+     * base64 representations of assets
+     * @param  {string}   assetsPath     path to assets directory
+     * @param  {string}   htmlInputPath  path to input HTML file
+     * @param  {string}   htmlOutputPath path to output HTML file
+     * @param  {Function} callback       function(err)
+     * @return {undefined}                  no return value
+     */
     dropify : function(assetsPath, htmlInputPath, htmlOutputPath, callback) {
         fs.readFile(htmlInputPath, 'utf-8', function(err, htmlData) {
             if (err) {
