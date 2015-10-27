@@ -1,0 +1,29 @@
+{
+  "name": "dropify",
+  "version": "0.0.1",
+  "description": "Node module to directly include resources as base64 into your html",
+  "main": "dropify.js",
+  "scripts": {
+    "test": "\"echo \"Error: no test specified\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliensteam51/dropify.git"
+  },
+  "keywords": [
+    "js",
+    "html",
+    "blob",
+    "base64",
+    "dataurl"
+  ],
+  "author": "github@aliensareamongus.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aliensteam51/dropify/issues"
+  },
+  "homepage": "https://github.com/aliensteam51/dropify#readme",
+  "dependencies": {
+    "async": "^1.5.0"
+  }
+}
