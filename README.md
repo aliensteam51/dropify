@@ -76,7 +76,7 @@ Dropify will add a data URI part before the base64 string, the mime type for the
     
 You can add other extensions before using Dropify:
 
-	dropify = require("./dropify")
+	dropify = require("gamedropify")
 
 	var src = "/Users/almerlucke/Desktop/dropifyTagTest.html"
 	var dst = "/Users/almerlucke/Desktop/dropifyTagTestOutput.html"
