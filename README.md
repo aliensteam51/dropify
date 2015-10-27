@@ -61,7 +61,11 @@ So Dropify will try to match the tags in the input HTML with subfolders in the r
 
 It will then convert the matched subfolders to a <script></script> string containing a single javascript dictionary variable named the same as the subfolder. The dictionary will contain keys corresponding to file names and subfolders and the values are the files represented as base64 strings.
 
-If the tag in the input HTML contains a pound sign, like:
+Make sure your tags, folder names and file names all conform to the following regular expression:
+	
+	[a-zA-Z_$][0-9a-zA-Z_$]*
+
+If the tag in the input HTML contains a pound sign:
 
 	<!--Dropify:images#-->
 
