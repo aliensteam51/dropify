@@ -57,8 +57,7 @@ var __dropify = {
             if (err) {
                 callback(err)
             } else {
-                // var base64String = new Buffer(data).toString('base64')
-                var base64String = "aGVsbG8gd29ybGQh"
+                var base64String = new Buffer(data).toString('base64')
 
                 if (encodeAsDataURI) {
                     var extension = path.extname(file)
