@@ -40,10 +40,9 @@ var __dropify = {
                                 name : path.basename(file)
                             })
                         } else {
-                            var extension = path.extname(file)
                             files.push({
                                 path : fullPath,
-                                name : path.basename(file, extension)
+                                name : path.basename(file)
                             })
                         }
                     }
