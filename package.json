@@ -1,6 +1,6 @@
 {
   "name": "gamedropify",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Node module to directly include resources as base64 into your html",
   "main": "dropify.js",
   "scripts": {

@@ -163,7 +163,7 @@ var __dropify = {
                 obj = self.dictionaryToJavascriptString(obj)
             }
 
-            str += key + " : " + obj
+            str += "'" + key + "'" + " : " + obj
         })
 
         str += "}"
