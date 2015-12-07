@@ -40,9 +40,10 @@ var __dropify = {
                                 name : path.basename(file)
                             })
                         } else {
+                            var extension = path.extname(file)
                             files.push({
                                 path : fullPath,
-                                name : path.basename(file)
+                                name : path.basename(file, extension)
                             })
                         }
                     }
@@ -119,7 +120,7 @@ var __dropify = {
             async.eachSeries(files, function(file, callback) {
                 self.fileToBase64String(file.path, encodeAsDataURI, function(err, base64String) {
                     if (base64String) {
-                        map[file.name] = base64String
+                        map["" + file.name] = base64String
                     }
                     callback(null)
                 })
