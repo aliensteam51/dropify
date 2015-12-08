@@ -7,7 +7,9 @@ var __dropify = {
         ".png" : "image/png",
         ".jpg" : "image/jpeg",
         ".wav" : "audio/wav",
-        ".mp3" : "audio/mpeg3"
+        ".mp3" : "audio/mpeg3",
+        ".mid" : "audio/midi",
+        ".js"  : "application/javascript"
     },
 
     /**
